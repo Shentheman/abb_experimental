@@ -1,18 +1,23 @@
+<?xml version="1.0"?>
 <launch>
-  <!-- The planning and execution components of MoveIt! configured to run -->
-  <!-- using the ROS-Industrial interface. -->
- 
+  <!-- the "sim" argument controls whether we connect to a Simulated or Real robot -->
+  <!--  - if sim=false, a robot_ip argument is required -->
+  <arg name="sim" default="true" />
+  <arg name="robot_ip" unless="$(arg sim)" />
+
+  <arg name="debug" default="false" />
+  <arg name="info" default="true" />
+  
+  <arg name="planner" default="ompl" />
+
+  
   <!-- Non-standard joint names:
        - Create a file [robot_moveit_config]/config/joint_names.yaml
            controller_joint_names: [joint_1, joint_2, ... joint_N] 
        - Update with joint names for your robot (in order expected by rbt controller)
        - and uncomment the following line: -->
   <rosparam command="load" file="$(find abb_irb120_support)/config/joint_names_irb120_3_58.yaml" />
- 
-  <!-- the "sim" argument controls whether we connect to a Simulated or Real robot -->
-  <!--  - if sim=false, a robot_ip argument is required -->
-  <arg name="sim" default="true" />
-  <arg name="robot_ip" unless="$(arg sim)" />
+
 
   <!-- By default, we do not start a database (it can be large) -->
   <arg name="db" default="false" />
@@ -43,6 +48,11 @@
 
   <include file="$(find abb_irb120_moveit_config)/launch/move_group.launch">
     <arg name="publish_monitored_planning_scene" value="true" />
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="$(arg info)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="planner" value="$(arg planner)" />
   </include>
 
   <include file="$(find abb_irb120_moveit_config)/launch/moveit_rviz.launch">

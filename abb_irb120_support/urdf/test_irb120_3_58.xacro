@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<robot name="test_irb120_3_58" xmlns:xacro="http://ros.org/wiki/xacro">
+	<!-- https://github.com/ros-industrial/industrial_moveit/blob/3dfb1cbcd0991b62148b7bc1b99169fa07992d2e/stomp_test_support/urdf/test_kr210l150.xacro -->
+	
+    <xacro:include filename="$(find abb_irb120_support)/urdf/irb120_3_58_macro.xacro"/>
+
+    <xacro:abb_irb120_3_58 prefix=""/>
+
+    <xacro:include filename="$(find abb_irb120_support)/urdf/test_irb120_3_58_scene_macro.xacro"/>
+  	<xacro:test_irb120_3_58_scene prefix=""/>
+
+</robot>

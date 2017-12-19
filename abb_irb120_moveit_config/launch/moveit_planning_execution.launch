@@ -10,7 +10,10 @@
     
     <arg name="planner" default="ompl" />
 
-    
+    <!-- Whether we only load the robot urdf or we load the moveit planning scene with the robot urdf included it -->
+    <!-- e.g. /src/abb_experimental/abb_irb120_support/urdf/test_irb120_3_58.xacro -->
+    <arg name="load_robot_only_into_moveit" default="true"/>
+
     <!-- Non-standard joint names:
              - Create a file [robot_moveit_config]/config/joint_names.yaml
                      controller_joint_names: [joint_1, joint_2, ... joint_N] 
@@ -27,6 +30,7 @@
     <!-- load the robot_description parameter before launching ROS-I nodes -->
     <include file="$(find abb_irb120_moveit_config)/launch/planning_context.launch" >
         <arg name="load_robot_description" value="true" />
+        <arg name="load_robot_only_into_moveit" value="$(arg load_robot_only_into_moveit)" />
     </include>
 
     <!-- run the robot simulator and action interface nodes -->
@@ -53,6 +57,7 @@
         <arg name="info" value="$(arg info)"/>
         <arg name="debug" value="$(arg debug)"/>
         <arg name="planner" value="$(arg planner)" />
+        <arg name="load_robot_only_into_moveit" value="$(arg load_robot_only_into_moveit)" />
     </include>
 
     <include file="$(find abb_irb120_moveit_config)/launch/moveit_rviz.launch">

@@ -6,8 +6,19 @@
     <!-- The name of the parameter under which the URDF is loaded -->
     <arg name="robot_description" default="robot_description"/>
 
+    <!-- Whether we only load the robot urdf or we load the moveit planning scene with the robot urdf included it -->
+    <!-- e.g. /src/abb_experimental/abb_irb120_support/urdf/test_irb120_3_58.xacro -->
+    <arg name="load_robot_only_into_moveit" default="true"/>
+
+
     <!-- Load universal robot description format (URDF) -->
-    <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find abb_irb120_support)/urdf/irb120_3_58.urdf"/>
+    <!-- https://github.com/ros-industrial/industrial_moveit/blob/indigo-devel/stomp_test_kr210_moveit_config/launch/planning_context.launch -->
+    <group if="$(arg load_robot_only_into_moveit)">
+        <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find abb_irb120_support)/urdf/irb120_3_58.urdf"/>
+    </group>
+    <group unless="$(arg load_robot_only_into_moveit)">
+        <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="$(find xacro)/xacro.py '$(find abb_irb120_support)/urdf/test_irb120_3_58.xacro'"/>
+    </group>
 
     <!-- The semantic description that corresponds to the URDF -->
     <param name="$(arg robot_description)_semantic" textfile="$(find abb_irb120_moveit_config)/config/abb_irb120_3_58.srdf" />

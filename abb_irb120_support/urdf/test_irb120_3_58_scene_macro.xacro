@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+
+<!--Generates a urdf from the macro in kr210_macro.xacro -->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:property name="cylinder_height" value="1.0"/>
+
+<xacro:macro name="test_irb120_3_58_scene" params="prefix">
+    <link name="world"/>
+
+    <link name="${prefix}obstacle_cylinder_1">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="1"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="${cylinder_height}"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </collision>
+    </link>
+
+    <link name="${prefix}obstacle_cylinder_2">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="1"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="${cylinder_height}"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </collision>
+    </link>
+
+    <link name="${prefix}obstacle_cylinder_3">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="1"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="${cylinder_height}"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </collision>
+    </link>
+    
+    <link name="${prefix}obstacle_cylinder_4">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="1"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="${cylinder_height}"/>
+            </geometry>
+         <material name="cyan">
+             <color rgba="0 1.0 1.0 1.0"/>
+         </material>
+        </collision>
+    </link>
+
+    <joint name="world_to_base" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}world_to_cylinder_1" type="fixed">
+        <parent link="world" />
+        <child link="obstacle_cylinder_1" />
+        <origin xyz="0.15 0.15 ${0.5*cylinder_height}"/>
+    </joint>
+
+    <joint name="${prefix}world_to_cylinder_2" type="fixed">
+        <parent link="world" />
+        <child link="obstacle_cylinder_2" />
+        <origin xyz="0.25 -0.25 ${0.5*cylinder_height}"/>
+    </joint>
+
+    <joint name="${prefix}world_to_cylinder_3" type="fixed">
+        <parent link="world" />
+        <child link="obstacle_cylinder_3" />
+        <origin xyz="-0.3 0.3 ${0.5*cylinder_height}"/>
+    </joint>
+
+
+    <joint name="${prefix}world_to_cylinder_4" type="fixed">
+        <parent link="world" />
+        <child link="obstacle_cylinder_4" />
+        <origin xyz="-0.2 -0.2 ${0.5*cylinder_height}"/>
+    </joint>
+
+</xacro:macro>
+</robot>
+

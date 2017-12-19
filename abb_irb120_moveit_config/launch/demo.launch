@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <launch>
+    <!-- <arg name="planner" default="ompl" /> -->
+    <arg name="planner" default="chomp" />
+
+    <!-- Whether we only load the robot urdf or we load the moveit planning scene with the robot urdf included it -->
+    <!-- e.g. /src/abb_experimental/abb_irb120_support/urdf/test_irb120_3_58.xacro -->
+    <arg name="load_robot_only_into_moveit" default="false"/>
 
     <!-- By default, we do not start a database (it can be large) -->
     <arg name="db" default="false" />
@@ -12,6 +18,7 @@
     <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
     <include file="$(find abb_irb120_moveit_config)/launch/planning_context.launch">
         <arg name="load_robot_description" value="true"/>
+        <arg name="load_robot_only_into_moveit" value="$(arg load_robot_only_into_moveit)" />
     </include>
 
     <!-- If needed, broadcast static tf for robot root -->
@@ -32,6 +39,7 @@
         <arg name="fake_execution" value="true"/>
         <arg name="info" value="true"/>
         <arg name="debug" value="$(arg debug)"/>
+        <arg name="planner" value="$(arg planner)"/>
     </include>
 
     <!-- Run Rviz and load the default config to see the state of the move_group node -->

@@ -6,6 +6,10 @@
     
     <arg name="planner" default="ompl" />
 
+    <!-- Whether we only load the robot urdf or we load the moveit planning scene with the robot urdf included it -->
+    <!-- e.g. /src/abb_experimental/abb_irb120_support/urdf/test_irb120_3_58.xacro -->
+    <arg name="load_robot_only_into_moveit" default="true"/>
+
     <!-- The planning and execution components of MoveIt! configured to run
              against a Gazebo based, ros_control compatible simulation of the IRB 120.
 
@@ -32,8 +36,10 @@
     <arg name="db_path" default="$(find abb_irb120_moveit_config)/default_warehouse_mongo_db" />
 
     <!-- don't let planning_context load description, we've already done it -->
+    <!-- So load_robot_only_into_moveit will not do anything at all. We will never load the scene from MoveIt!. Instead, we always load the scene from Gazebo. -->
     <include file="$(find abb_irb120_moveit_config)/launch/planning_context.launch">
         <arg name="load_robot_description" value="false" />
+        <arg name="load_robot_only_into_moveit" value="$(arg load_robot_only_into_moveit)" />
     </include>
 
     <include file="$(find abb_irb120_moveit_config)/launch/move_group.launch">

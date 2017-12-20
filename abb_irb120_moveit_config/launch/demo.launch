@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="planner" default="ompl" />
+    <!-- <arg name="planner" default="ompl" /> -->
     <!-- <arg name="planner" default="chomp" /> -->
+    <arg name="planner" default="stomp" />
 
     <!-- Whether we only load the robot urdf or we load the moveit planning scene with the robot urdf included it -->
     <!-- e.g. /src/abb_experimental/abb_irb120_support/urdf/test_irb120_3_58.xacro -->

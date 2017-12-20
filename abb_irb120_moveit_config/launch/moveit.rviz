@@ -645,6 +645,23 @@ Visualization Manager:
         Robot Alpha: 0.5
         Show Scene Robot: true
       Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /move_group/stomp_trajectory
+      Name: Marker
+      Namespaces:
+        optimized: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /stomp_trajectories
+      Name: MarkerArray
+      Namespaces:
+        noisy: true
+        noisy/goal: true
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

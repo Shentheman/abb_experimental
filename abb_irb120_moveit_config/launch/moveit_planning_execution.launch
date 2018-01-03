@@ -59,9 +59,9 @@
         <arg name="planner" value="$(arg planner)" />
     </include>
 
-    <include file="$(find abb_irb120_moveit_config)/launch/moveit_rviz.launch">
+    <!-- <include file="$(find abb_irb120_moveit_config)/launch/moveit_rviz.launch">
         <arg name="config" value="true"/>
-    </include>
+    </include> -->
     
     <!-- If database loading was enabled, start mongodb as well -->
     <include file="$(find abb_irb120_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)">

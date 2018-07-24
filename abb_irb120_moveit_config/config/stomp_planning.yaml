@@ -1,4 +1,5 @@
 # https://github.com/ros-industrial/industrial_moveit/blob/kinetic-devel/stomp_test_kr210_moveit_config/config/stomp_config.yaml
+# https://github.com/ros-industrial/industrial_moveit/blob/indigo-devel/stomp_moveit/examples/stomp_config_example.yaml
 stomp/manipulator:
   group_name: manipulator
   optimization:
